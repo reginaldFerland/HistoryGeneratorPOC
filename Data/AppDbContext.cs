@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HistoryGeneratorPOC.Data;
 
-public class AppDbContext : DbContext
+public partial class AppDbContext : DbContext
 {
 
     public AppDbContext(DbContextOptions options) : base(options)

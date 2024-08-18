@@ -12,7 +12,7 @@ namespace HistoryGeneratorPOC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20240816222452_initial")]
-    partial class initial
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
