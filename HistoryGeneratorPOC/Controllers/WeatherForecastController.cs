@@ -1,4 +1,8 @@
+using Generated.Data.Models;
+using HistoryGeneratorPOC.Data;
+using HistoryGeneratorPOC.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HistoryGeneratorPOC.Controllers;
 [ApiController]
@@ -11,15 +15,20 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly AppDbContext _context;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, AppDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public async Task<IEnumerable<WeatherForecast>> Get()
     {
+        _context.Users.Add(new User { Id = new Random().Next(), Email = "Email", PasswordHash = "ohboy", Username = "My_new_user", CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow });
+
+        await _context.SaveChangesAsync();
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -27,5 +36,14 @@ public class WeatherForecastController : ControllerBase
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+    }
+
+    [HttpGet]
+    [Route("history")]
+    public async Task<IEnumerable<UserHistory>> GetHistory()
+    {
+        var userHistory = await _context.UserHistorys.ToListAsync();
+
+        return userHistory;
     }
 }

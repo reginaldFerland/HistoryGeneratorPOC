@@ -1,3 +1,4 @@
+using Generated.Data;
 using HistoryGeneratorPOC.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var con = builder.Configuration.GetConnectionString("dbConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("dbConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("dbConnection")).AddInterceptors(new AuditInterceptor()));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

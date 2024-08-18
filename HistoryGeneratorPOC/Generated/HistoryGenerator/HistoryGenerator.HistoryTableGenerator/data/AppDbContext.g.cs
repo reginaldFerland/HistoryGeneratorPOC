@@ -1,4 +1,4 @@
-﻿using HistoryGeneratorPOC.Data.Models;
+﻿using Generated.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HistoryGeneratorPOC.Data;

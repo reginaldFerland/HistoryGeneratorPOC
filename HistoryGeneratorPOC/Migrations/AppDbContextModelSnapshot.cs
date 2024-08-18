@@ -50,7 +50,7 @@ namespace HistoryGeneratorPOC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("HistoryGeneratorPOC.Data.Models.UserHistory", b =>
@@ -69,7 +69,7 @@ namespace HistoryGeneratorPOC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserHistorys");
+                    b.ToTable("UserHistorys", (string)null);
                 });
 #pragma warning restore 612, 618
         }
