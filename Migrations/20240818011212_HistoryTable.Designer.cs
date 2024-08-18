@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HistoryGeneratorPOC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240818005119_HistoryTable")]
+    [Migration("20240818011212_HistoryTable")]
     partial class HistoryTable
     {
         /// <inheritdoc />

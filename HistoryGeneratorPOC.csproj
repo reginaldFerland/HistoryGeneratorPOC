@@ -22,13 +22,13 @@
     <ProjectReference Include="..\HistoryGenerator\HistoryGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Generated\HistoryGenerator\HistoryGenerator.HistoryTableGenerator\*" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<!-- Exclude the output of source generators from the compilation -->
 		<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<!-- Include the generated files as None to make them visible in Solution Explorer -->
+		<None Include="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+	</ItemGroup>
 </Project>
